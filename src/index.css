@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --hero-top-desktop: 5.5rem;  /* 88px */
+  --hero-top-mobile: 4.5rem;   /* 72px */
+  --section-py-desktop: 5rem;   /* 80px */
+  --section-py-tablet: 4rem;    /* 64px */
+  --section-py-mobile: 3.5rem;  /* 56px */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+  
+  body {
+    background-color: #0a0e14;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  /* Target scroll margin for fixed navbar offset */
+  section {
+    scroll-margin-top: 5rem;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0e14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2735;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Subtle architectural grid pattern */
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Standardized interactive transition */
+.btn-interactive {
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+.btn-interactive:hover {
+  transform: translateY(-1.5px);
+}
+.btn-interactive:active {
+  transform: translateY(0);
+}
+
+/* Card Surface Class */
+.surface-card {
+  background-color: #11151c;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.surface-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  background-color: #131822;
+}
+
+.surface-card-interactive:hover {
+  border-color: rgba(240, 83, 53, 0.35);
+  transform: translateY(-2.5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(240, 83, 53, 0.12);
+}
+
+/* Smooth fade entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
