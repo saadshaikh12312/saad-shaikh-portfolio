@@ -38,6 +38,7 @@ saad-shaikh-portfolio/
 │   │   ├── Footer.jsx                       # Compact footer with branding, nav & socials
 │   │   ├── Hero.jsx                         # Main hero with zero-shift auto-typing & CTAs
 │   │   ├── Icons.jsx                        # Custom SVG vector icons (GitHub, LinkedIn, LeetCode)
+│   │   ├── LoadingScreen.jsx                # First-load intro sequence with progress bar
 │   │   ├── Navbar.jsx                       # Sticky navigation with mobile drawer & active tracking
 │   │   ├── Projects.jsx                     # Compact project showcase with 16:9 screenshot carousel
 │   │   ├── Skills.jsx                       # Categorized technical skills matrix with filter tabs
@@ -107,6 +108,14 @@ saad-shaikh-portfolio/
 ---
 
 ## 🧩 Component Architecture Breakdown
+
+### 0. `LoadingScreen.jsx`
+- First-load preloader sequence (~1.8s duration) with smooth cubic easing.
+- Cinematic reveal sequence: `01 / PORTFOLIO INITIALIZATION` → `SAAD SHAIKH` → `FULL-STACK DEVELOPER` → `MERN STACK • JAVA • REST APIs`.
+- Technical status transitions (`[ SYSTEM ] INITIALIZING` → `LOADING ASSETS` → `READY`).
+- High-precision progress bar counter (0% → 100%) with ambient terracotta glow.
+- Elegant scale/opacity exit animation (`scale-[0.99] opacity-0`) revealing the prepared portfolio without layout shift.
+- Full `@media (prefers-reduced-motion: reduce)` accessibility support.
 
 ### 1. `Navbar.jsx`
 - Sticky header with blurred backdrop (`backdrop-blur-md`).
