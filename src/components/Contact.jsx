@@ -33,10 +33,10 @@ export default function Contact() {
   return (
     <section id="contact" className="py-14 sm:py-16 md:py-20 border-t border-white/[0.06] bg-[#0a0e14] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          
+
           {/* Left Column: Direct Invitation & Info (5 cols) */}
           <div className="lg:col-span-5 space-y-5 sm:space-y-6">
             <div className="space-y-2 sm:space-y-3">
@@ -109,8 +109,7 @@ export default function Contact() {
 
                 <a
                   href={personalInfo.resumeUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                  download={personalInfo.downloadResumeName}
                   className="px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] text-xs font-mono text-terracotta-400 hover:text-white border border-white/[0.08] btn-interactive"
                 >
                   Download
@@ -154,7 +153,7 @@ export default function Contact() {
           {/* Right Column: Contact Form (7 cols) */}
           <div className="lg:col-span-7">
             <div className="p-5 sm:p-7 rounded-2xl bg-[#11151c] border border-white/[0.08] shadow-xl relative">
-              
+
               {isSubmitted ? (
                 <div className="py-10 flex flex-col items-center justify-center text-center space-y-3">
                   <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
@@ -170,7 +169,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-3.5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    
+
                     {/* Your Name */}
                     <div className="space-y-1">
                       <label className="block text-[11px] font-mono text-slate-300 font-medium">

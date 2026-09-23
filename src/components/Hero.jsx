@@ -12,13 +12,13 @@ export default function Hero() {
     <section id="home" className="relative pt-22 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20 overflow-hidden bg-grid-subtle">
       {/* Subtle ambient warmth glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[650px] h-[300px] bg-terracotta-500/[0.03] blur-[120px] pointer-events-none rounded-full" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
+
           {/* Left Column: Typographic Hook & Narrative (7 cols ~58%) */}
           <div className="lg:col-span-7 flex flex-col items-start space-y-4 sm:space-y-5">
-            
+
             {/* Minimal Location & Status Indicator */}
             <div className="inline-flex items-center gap-2 text-xs font-mono tracking-wider text-slate-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -60,7 +60,7 @@ export default function Hero() {
               {/* 2. Secondary: Outlined / Subtle */}
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-4.5 py-2.5 text-xs sm:text-sm font-medium text-slate-200 rounded-xl bg-[#11161d] hover:bg-[#151c26] border border-[#202833] hover:border-white/[0.2] btn-interactive"
+                className="inline-flex items-center justify-center gap-2 px-5 px-4.5 py-2.5 text-xs sm:text-sm font-medium text-slate-200 rounded-xl bg-[#11161d] hover:bg-[#151c26] border border-[#202833] hover:border-white/[0.2] btn-interactive"
               >
                 <Mail className="w-3.5 h-3.5 text-slate-400" />
                 <span>Contact Me</span>
@@ -69,9 +69,8 @@ export default function Hero() {
               {/* 3. Tertiary: Ghost / Text button */}
               <a
                 href={personalInfo.resumeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 text-xs sm:text-sm font-mono text-slate-400 hover:text-white transition-colors duration-160"
+                download={personalInfo.downloadResumeName}
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 rounded-xl py-2.5 text-xs sm:text-sm font-mono text-slate-400 hover:text-white transition-colors duration-160"
               >
                 <FileText className="w-3.5 h-3.5 text-terracotta-400" />
                 <span>Download Resume</span>

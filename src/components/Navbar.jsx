@@ -94,7 +94,7 @@ export default function Navbar() {
             
             {/* Primary Resume CTA */}
             <a
-              href={personalInfo.resumeUrl}
+               href={personalInfo.resumeUrl}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono font-semibold text-white rounded-lg bg-terracotta-500 hover:bg-terracotta-600 btn-interactive shadow-sm hover:shadow-[0_0_15px_rgba(240,83,53,0.35)]"

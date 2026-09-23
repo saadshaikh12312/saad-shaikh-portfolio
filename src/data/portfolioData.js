@@ -8,7 +8,8 @@ export const personalInfo = {
   github: "https://github.com/saadshaikh12312",
   linkedin: "https://www.linkedin.com/in/saad-shaikh-aminoddin",
   leetcode: "https://leetcode.com/u/XGHqgeoovn/",
-  resumeUrl: "/Saad_Shaikh_Resume.pdf",
+  resumeUrl: "/resume/SaadResume_MERN.pdf",
+  downloadResumeName: "Saad-Shaikh-Resume.pdf",
   heroGreeting: "Hi, I'm Saad Shaikh.",
   heroStatement: "I build practical full-stack web applications across both MERN and Java ecosystems, focusing on dependable backend APIs, responsive web interfaces, and clean, problem-solving code.",
   typingPhrases: [
