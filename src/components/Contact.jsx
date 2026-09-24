@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { personalInfo } from '../data/portfolioData';
 import { Mail, MapPin, Check, Copy, FileText } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, LeetCodeIcon } from './Icons';
+import { GithubIcon, LinkedinIcon } from './Icons';
 import emailjs from '@emailjs/browser';
+
+emailjs.init({
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+  limitRate: {
+    id: 'portfolio-contact-form',
+    throttle: 300000,
+  },
+});
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalInfo.email);
@@ -23,6 +33,8 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isSubmitting || cooldown) return;
+
     setIsSubmitting(true);
 
     try {
@@ -32,18 +44,22 @@ export default function Contact() {
         {
           name: formData.name,
           email: formData.email,
+          subject: formData.subject,
           message: formData.message,
         },
-        {
-          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-        }
       );
 
       setIsSubmitted(true);
+      setCooldown(true);
+
+      setTimeout(() => {
+        setCooldown(false);
+      }, 300000);
 
       setFormData({
         name: '',
         email: '',
+        subject: '',
         message: '',
       });
 
@@ -231,6 +247,21 @@ export default function Contact() {
 
                   </div>
 
+                  {/* Subject */}
+                  <div className="space-y-1">
+                    <label className="block text-[11px] font-mono text-slate-300 font-medium">
+                      SUBJECT <span className="text-terracotta-400">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder="I would like to discuss a potential collaboration on a web application project..."
+                      className="w-full px-3 py-2.5 rounded-xl bg-[#0a0e14] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-slate-600 focus:outline-none focus:border-terracotta-500 focus:ring-1 focus:ring-terracotta-500 transition-all font-sans resize-none"
+                    />
+                  </div>
+
                   {/* Message */}
                   <div className="space-y-1">
                     <label className="block text-[11px] font-mono text-slate-300 font-medium">
@@ -241,7 +272,7 @@ export default function Contact() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Hello Saad, I came across your portfolio and would like to discuss..."
+                      placeholder="Hi Saad, I came across your portfolio and I'm impressed with your work. I would like to discuss a potential collaboration on a web application project. Please let me know if you're available for a chat."
                       className="w-full px-3 py-2.5 rounded-xl bg-[#0a0e14] border border-white/[0.1] text-xs sm:text-sm text-white placeholder-slate-600 focus:outline-none focus:border-terracotta-500 focus:ring-1 focus:ring-terracotta-500 transition-all font-sans resize-none"
                     />
                   </div>
@@ -249,11 +280,13 @@ export default function Contact() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || cooldown}
                     className="w-full py-2.5 px-5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 disabled:opacity-50 text-white text-xs font-mono font-bold tracking-wider uppercase btn-interactive shadow-md hover:shadow-[0_0_18px_rgba(240,83,53,0.35)] flex items-center justify-center gap-2 group cursor-pointer"
                   >
                     {isSubmitting ? (
                       <span>SENDING MESSAGE...</span>
+                    ) : cooldown ? (
+                      <span>PLEASE WAIT...</span>
                     ) : (
                       <span>Send Message →</span>
                     )}
