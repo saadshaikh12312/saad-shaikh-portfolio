@@ -9,24 +9,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="py-8 sm:py-10 border-t border-white/[0.08] bg-[#070a0f] text-slate-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+    <footer className="py-6 sm:py-10 border-t border-[#202833] bg-[#070a0f] text-slate-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-5">
         
         {/* Top Footer Row */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-5 border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4 pb-4 sm:pb-5 border-b border-white/[0.06]">
           
           <div className="flex flex-wrap items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-terracotta-500 shadow-[0_0_8px_rgba(240,83,53,0.7)] inline-block" />
+            <span className="w-2 h-2 rounded-full bg-terracotta-500 shadow-[0_0_8px_rgba(240,83,53,0.7)] inline-block" />
             <span className="font-sans font-bold text-white text-sm sm:text-base tracking-tight">
               {personalInfo.name}
             </span>
-            <span className="text-xs font-mono text-slate-400">
+            <span className="text-[11px] sm:text-xs font-mono text-slate-400">
               — {personalInfo.role} ({personalInfo.positioning})
             </span>
           </div>
 
           {/* Quick Nav Links */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 text-xs font-mono">
             <a href="#home" className="text-slate-400 hover:text-white transition-colors duration-180">Home</a>
             <a href="#about" className="text-slate-400 hover:text-white transition-colors duration-180">About</a>
             <a href="#skills" className="text-slate-400 hover:text-white transition-colors duration-180">Skills</a>
@@ -38,7 +38,7 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-slate-300 hover:text-white btn-interactive cursor-pointer self-end md:self-auto"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#11161d] hover:bg-[#151c26] border border-[#202833] hover:border-terracotta-500/40 text-xs font-mono text-slate-300 hover:text-white btn-interactive cursor-pointer self-start sm:self-auto"
             aria-label="Back to top"
           >
             <span>Top</span>
@@ -48,21 +48,21 @@ export default function Footer() {
 
         {/* Bottom Footer Row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono text-slate-400">
-          <div>
-            © 2026 {personalInfo.name} — Built with clean code, curiosity, and consistency.
+          <div className="text-[11px] sm:text-xs">
+            © 2026 {personalInfo.name} — Full-Stack Developer (MERN & Java)
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="text-slate-500 text-[11px] hidden sm:inline">
+          <div className="flex items-center justify-between w-full sm:w-auto gap-4">
+            <span className="text-slate-500 text-[11px]">
               {personalInfo.location}
             </span>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5 sm:gap-3">
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-white transition-colors duration-180"
+                className="text-slate-400 hover:text-white transition-colors duration-180 p-1"
                 aria-label="GitHub Profile"
               >
                 <GithubIcon className="w-4 h-4" />
@@ -71,7 +71,7 @@ export default function Footer() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-white transition-colors duration-180"
+                className="text-slate-400 hover:text-white transition-colors duration-180 p-1"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-4 h-4" />
@@ -80,14 +80,14 @@ export default function Footer() {
                 href={personalInfo.leetcode}
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-400 hover:text-white transition-colors duration-180"
+                className="text-slate-400 hover:text-white transition-colors duration-180 p-1"
                 aria-label="LeetCode Profile"
               >
-                <LeetCodeIcon className="w-4 h-4" />
+                <LeetCodeIcon className="w-4 h-4 text-terracotta-400" />
               </a>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="text-slate-400 hover:text-white transition-colors duration-180"
+                className="text-slate-400 hover:text-white transition-colors duration-180 p-1"
                 aria-label="Email Me"
               >
                 <Mail className="w-4 h-4" />
