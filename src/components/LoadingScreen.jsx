@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-export default function LoadingScreen({ onStartExit, onComplete }) {
-  const [stage, setStage] = useState(0); // 0: initial, 1: eyebrow, 2: name, 3: role, 4: stack, 5: progress, 6: ready
+export default function LoadingScreen({ onComplete }) {
+  const [stage, setStage] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const [isMounted, setIsMounted] = useState(true);
@@ -12,40 +12,38 @@ export default function LoadingScreen({ onStartExit, onComplete }) {
     const prefersReducedMotion = mediaQuery.matches;
 
     // Lock body scroll while loading screen is active
-    const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    // If user prefers reduced motion, skip long animation
+    // Fast path for reduced motion
     if (prefersReducedMotion) {
-      setStage(6);
       setProgress(100);
+      setStage(6);
       const timer = setTimeout(() => {
         setIsExiting(true);
-        if (onStartExit) onStartExit();
         setTimeout(() => {
           setIsMounted(false);
-          document.body.style.overflow = originalOverflow || '';
+          document.body.style.overflow = '';
           if (onComplete) onComplete();
-        }, 200);
-      }, 300);
+        }, 150);
+      }, 250);
 
       return () => {
         clearTimeout(timer);
-        document.body.style.overflow = originalOverflow || '';
+        document.body.style.overflow = '';
       };
     }
 
-    // Choreographed sequence timers
-    const tEyebrow = setTimeout(() => setStage(1), 150);   // 0.15s: 01 / PORTFOLIO INITIALIZATION
-    const tName = setTimeout(() => setStage(2), 350);      // 0.35s: SAAD SHAIKH
-    const tRole = setTimeout(() => setStage(3), 550);      // 0.55s: FULL-STACK DEVELOPER
-    const tStack = setTimeout(() => setStage(4), 750);     // 0.75s: MERN • JAVA • REST APIs
-    const tProgress = setTimeout(() => setStage(5), 950);  // 0.95s: Progress bar starts filling
+    // Sequence stages
+    const t1 = setTimeout(() => setStage(1), 100);  // Eyebrow
+    const t2 = setTimeout(() => setStage(2), 220);  // Name
+    const t3 = setTimeout(() => setStage(3), 360);  // Role
+    const t4 = setTimeout(() => setStage(4), 500);  // Stack
+    const t5 = setTimeout(() => setStage(5), 650);  // Progress starts
 
-    // Smooth progress animation over ~550ms using cubic ease-out
+    // Smooth progress fill over ~500ms
     let animFrame;
-    const progressStartTime = performance.now() + 950;
-    const progressDuration = 2000;
+    const progressStartTime = performance.now() + 650;
+    const progressDuration = 500;
 
     const animateProgress = (currentTime) => {
       if (currentTime < progressStartTime) {
@@ -55,44 +53,49 @@ export default function LoadingScreen({ onStartExit, onComplete }) {
 
       const elapsed = currentTime - progressStartTime;
       const fraction = Math.min(elapsed / progressDuration, 1);
-      
-      // Smooth cubic ease-out
       const eased = 1 - Math.pow(1 - fraction, 3);
       setProgress(Math.round(eased * 100));
 
       if (fraction < 1) {
         animFrame = requestAnimationFrame(animateProgress);
       } else {
-        // 100% reached -> READY
-        setStage(6);
-
-        // Short 150ms hold, then smooth cross-fade exit
+        setStage(6); // READY
         setTimeout(() => {
           setIsExiting(true);
-          if (onStartExit) onStartExit();
-
-          // Wait for 450ms transition duration before unmounting
           setTimeout(() => {
             setIsMounted(false);
-            document.body.style.overflow = originalOverflow || '';
+            document.body.style.overflow = '';
             if (onComplete) onComplete();
-          }, 450);
-        }, 250);
+          }, 350);
+        }, 150);
       }
     };
 
     animFrame = requestAnimationFrame(animateProgress);
 
+    // Hard fallback timer (guarantees completion even if browser tab was backgrounded)
+    const fallbackTimer = setTimeout(() => {
+      setProgress(100);
+      setStage(6);
+      setIsExiting(true);
+      setTimeout(() => {
+        setIsMounted(false);
+        document.body.style.overflow = '';
+        if (onComplete) onComplete();
+      }, 350);
+    }, 1800);
+
     return () => {
       cancelAnimationFrame(animFrame);
-      clearTimeout(tEyebrow);
-      clearTimeout(tName);
-      clearTimeout(tRole);
-      clearTimeout(tStack);
-      clearTimeout(tProgress);
-      document.body.style.overflow = originalOverflow || '';
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+      clearTimeout(t5);
+      clearTimeout(fallbackTimer);
+      document.body.style.overflow = '';
     };
-  }, [onStartExit, onComplete]);
+  }, [onComplete]);
 
   if (!isMounted) return null;
 
@@ -105,30 +108,32 @@ export default function LoadingScreen({ onStartExit, onComplete }) {
       aria-valuemax={100}
       aria-live="polite"
       style={{
+        position: 'fixed',
+        inset: 0,
         width: '100vw',
         height: '100dvh',
         backgroundColor: '#080c12',
+        zIndex: 99999,
       }}
-      className={`fixed inset-0 z-[99999] w-full h-full h-[100dvh] min-h-[100dvh] bg-[#080c12] text-slate-100 flex items-center justify-center p-4 sm:p-6 select-none overflow-hidden transition-opacity duration-450 ease-out ${
+      className={`fixed inset-0 z-[99999] w-full h-full h-[100dvh] bg-[#080c12] text-slate-100 flex items-center justify-center p-4 select-none overflow-hidden transition-opacity duration-350 ease-out ${
         isExiting ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
       }`}
     >
-      {/* Centered Loading Container - Perfectly Centered Across All Viewports */}
       <div className="w-full max-w-md mx-auto flex flex-col items-center text-center px-4">
         
         {/* 1. Eyebrow */}
-        {/* <div
-          className={`text-[11px] sm:text-xs font-mono tracking-widest text-slate-400 uppercase mb-4 sm:mb-5 transition-all duration-400 ease-out ${
+        <div
+          className={`text-[10px] sm:text-xs font-mono tracking-widest text-slate-400 uppercase mb-3 sm:mb-4 transition-all duration-300 ${
             stage >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
           }`}
         >
           01 / PORTFOLIO INITIALIZATION
-        </div> */}
+        </div>
 
         {/* 2. Main Name & Role */}
-        <div className="space-y-1 sm:space-y-1.5 mb-4 sm:mb-5">
+        <div className="space-y-1 mb-3 sm:mb-4">
           <h1
-            className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white font-sans transition-all duration-400 ease-out ${
+            className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white font-sans transition-all duration-300 ${
               stage >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
             }`}
           >
@@ -136,7 +141,7 @@ export default function LoadingScreen({ onStartExit, onComplete }) {
           </h1>
 
           <div
-            className={`text-sm sm:text-lg md:text-xl font-semibold tracking-tight text-terracotta-500 font-sans transition-all duration-400 ease-out ${
+            className={`text-sm sm:text-lg md:text-xl font-semibold tracking-tight text-terracotta-500 font-sans transition-all duration-300 ${
               stage >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
             }`}
           >
@@ -146,7 +151,7 @@ export default function LoadingScreen({ onStartExit, onComplete }) {
 
         {/* 3. Tech Stack Line */}
         <div
-          className={`text-xs sm:text-sm font-mono text-slate-400 tracking-wide mb-6 sm:mb-8 transition-all duration-400 ease-out ${
+          className={`text-xs sm:text-sm font-mono text-slate-400 tracking-wide mb-5 sm:mb-7 transition-all duration-300 ${
             stage >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
           }`}
         >
@@ -159,7 +164,7 @@ export default function LoadingScreen({ onStartExit, onComplete }) {
 
         {/* 4. Progress Bar & Status Text */}
         <div
-          className={`w-full max-w-[240px] sm:max-w-[280px] space-y-3 transition-all duration-400 ease-out ${
+          className={`w-full max-w-[240px] sm:max-w-[280px] space-y-2.5 transition-all duration-300 ${
             stage >= 5 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
           }`}
         >

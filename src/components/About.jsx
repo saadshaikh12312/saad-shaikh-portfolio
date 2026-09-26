@@ -7,13 +7,13 @@ export default function About() {
     {
       number: "01",
       title: "Java Backend",
-      desc: "Building structured REST APIs and services with Java, Spring Boot, and MySQL.",
+      desc: "Building structured REST APIs and backend services with Java, Spring Boot, and MySQL.",
       icon: Server
     },
     {
       number: "02",
       title: "MERN Stack",
-      desc: "Developing dynamic full-stack applications with MongoDB, Express.js, React, and Node.js.",
+      desc: "Developing full-stack applications with MongoDB, Express.js, React, and Node.js.",
       icon: Layers
     },
     {
@@ -31,25 +31,25 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-14 sm:py-16 md:py-20 border-t border-white/[0.06] bg-[#0a0e14] relative">
+    <section id="about" className="py-10 sm:py-16 md:py-20 border-t border-white/[0.06] bg-[#0a0e14] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial 2-Column Format */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12">
           
           {/* Left Column: Label + Headline & Focus (5 cols) */}
           <div className="lg:col-span-5 flex flex-col justify-start">
-            <div className="lg:sticky lg:top-24 space-y-4 sm:space-y-5">
+            <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-4 md:space-y-5">
               <div className="inline-flex items-center gap-2 text-xs font-mono text-terracotta-400 tracking-wider uppercase font-semibold">
                 <span className="w-1.5 h-1.5 rounded-full bg-terracotta-500" />
                 <span>ABOUT ME</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight font-sans">
+              <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight font-sans">
                 {personalInfo.aboutHeadline}
               </h2>
 
-              <div className="p-3.5 sm:p-4 rounded-xl bg-[#11151c] border border-white/[0.07] space-y-1.5">
+              <div className="p-3.5 sm:p-5 rounded-xl bg-[#11151c] border border-[#202833] space-y-1 sm:space-y-1.5">
                 <span className="text-[10px] font-mono text-terracotta-400 uppercase tracking-wider block font-semibold">
                   DUAL-STACK SPECIALIZATION
                 </span>
@@ -59,7 +59,7 @@ export default function About() {
               </div>
 
               <div className="pt-0.5">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#11151c] border border-white/[0.07] text-xs font-mono text-slate-400">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-[#11151c] border border-[#202833] text-xs font-mono text-slate-300">
                   <MapPin className="w-3.5 h-3.5 text-terracotta-400" />
                   <span>{personalInfo.location}</span>
                 </div>
@@ -68,39 +68,39 @@ export default function About() {
           </div>
 
           {/* Right Column: Narrative + 4 Capability Cards (7 cols) */}
-          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-            <div className="space-y-3 text-slate-300 leading-relaxed text-xs sm:text-sm md:text-base font-sans">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5 md:space-y-6">
+            <div className="space-y-2.5 sm:space-y-3 text-slate-300 leading-relaxed text-xs sm:text-sm md:text-base font-sans">
               {personalInfo.aboutNarrative.map((paragraph, index) => (
-                <p key={index} className="text-slate-300/90 leading-relaxed">
+                <p key={index} className="text-slate-300 leading-relaxed">
                   {paragraph}
                 </p>
               ))}
             </div>
 
-            {/* 4 Capability Cards Grid (2x2) */}
-            <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+            {/* 4 Capability Cards Grid (2x2 on tablet/desktop, 1-col on small mobile) */}
+            <div className="pt-1 sm:pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
               {cards.map((card, idx) => {
                 const IconComponent = card.icon;
                 return (
                   <div 
                     key={idx} 
-                    className="p-4 sm:p-4.5 rounded-xl bg-[#11151c] border border-white/[0.07] hover:border-white/[0.15] hover:bg-[#131922] transition-all duration-180 group flex flex-col justify-between"
+                    className="p-3.5 sm:p-4.5 rounded-xl bg-[#11151c] border border-[#202833] hover:border-terracotta-500/40 hover:bg-[#131922] transition-all duration-180 group flex flex-col justify-between"
                   >
                     <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-mono text-slate-500 font-bold">
+                      <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                        <span className="text-xs font-mono text-slate-400 font-bold">
                           {card.number}
                         </span>
-                        <div className="w-7 h-7 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center group-hover:border-terracotta-500/40 transition-colors">
-                          <IconComponent className="w-3.5 h-3.5 text-terracotta-400" />
+                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-terracotta-500/10 border border-terracotta-500/20 flex items-center justify-center group-hover:border-terracotta-500/40 transition-colors">
+                          <IconComponent className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-terracotta-400" />
                         </div>
                       </div>
 
-                      <h3 className="text-sm font-semibold text-white mb-1 font-sans">
+                      <h3 className="text-xs sm:text-sm font-semibold text-white mb-0.5 sm:mb-1 font-sans">
                         {card.title}
                       </h3>
 
-                      <p className="text-xs text-slate-400 leading-relaxed font-sans">
+                      <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed font-sans">
                         {card.desc}
                       </p>
                     </div>
