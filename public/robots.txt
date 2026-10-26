@@ -8,4 +8,12 @@ Allow: /saad-shaikh-profile.webp
 Allow: /saad-shaikh-profile.jpg
 Allow: /og-image.png
 
+# Googlebot-Favicon specific
+User-agent: Googlebot-Favicon
+Allow: /
+Allow: /favicon.png
+Allow: /favicon-96.png
+Allow: /favicon-192.png
+Allow: /favicon.ico
+
 Sitemap: https://saadshaikh-portfolio.netlify.app/sitemap.xml
