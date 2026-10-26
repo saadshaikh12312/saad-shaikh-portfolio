@@ -8,31 +8,41 @@ export default {
   theme: {
     extend: {
       colors: {
+        theme: {
+          bg: '#0B1018',
+          secondary: '#111823',
+          card: '#151D28',
+          border: '#283342',
+          primary: '#FF986B',
+          soft: '#FFB58F',
+          text: '#F5F7FA',
+          muted: '#AAB6C6',
+        },
         obsidian: {
-          950: '#070a0f',
-          900: '#0a0e14',
-          800: '#11151c',
-          700: '#171c26',
-          600: '#222938',
+          950: '#0B1018',
+          900: '#0e141f',
+          800: '#111823',
+          700: '#151D28',
+          600: '#283342',
         },
         terracotta: {
-          50: '#fff5f2',
-          100: '#ffe8e2',
-          200: '#ffd4c9',
-          300: '#ffb5a3',
-          400: '#ff856b',
-          500: '#f05335', // Main primary accent
-          600: '#e04224',
-          700: '#c53117',
-          800: '#9e2916',
-          900: '#7f2617',
+          50: '#fff5f0',
+          100: '#ffe8e0',
+          200: '#ffd0c0',
+          300: '#FFB58F', // Soft peach-orange
+          400: '#FF986B', // Primary soft orange
+          500: '#FF986B', // Main primary accent
+          600: '#f07d4f',
+          700: '#d96435',
+          800: '#a84720',
+          900: '#7f3314',
         },
         surface: {
-          card: '#11151c',
-          hover: '#151b24',
-          subtle: '#181f2a',
-          border: 'rgba(255, 255, 255, 0.07)',
-          'border-hover': 'rgba(240, 83, 53, 0.35)',
+          card: '#151D28',
+          hover: '#192331',
+          subtle: '#111823',
+          border: '#283342',
+          'border-hover': 'rgba(255, 152, 107, 0.4)',
         }
       },
       fontFamily: {

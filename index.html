@@ -5,11 +5,11 @@
   <meta charset="UTF-8" />
 
   <!-- Primary SEO -->
-  <title>Saad Shaikh | Full-Stack Developer — MERN & Java | Pune, India</title>
+  <title>Saad Shaikh | Full-Stack Developer — MERN Stack & Java</title>
 
   <meta
     name="description"
-    content="Portfolio of Saad Shaikh — Full-Stack Developer specializing in MERN Stack and Java Full-Stack development with React, Node.js, MongoDB, Spring Boot, and REST APIs."
+    content="Explore Saad Shaikh's developer portfolio featuring MERN Stack applications, Java backend development, projects, technical skills, and professional experience."
   />
 
   <meta name="author" content="Saad Shaikh" />
@@ -30,8 +30,9 @@
     href="https://saadshaikh-portfolio.netlify.app/"
   />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Favicon & Icons (Borderless Circular Photo with Transparency) -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Open Graph / LinkedIn / Facebook -->
@@ -39,12 +40,12 @@
 
   <meta
     property="og:title"
-    content="Saad Shaikh | Full-Stack Developer — MERN & Java"
+    content="Saad Shaikh | Full-Stack Developer — MERN Stack & Java"
   />
 
   <meta
     property="og:description"
-    content="Portfolio of Saad Shaikh, a Full-Stack Developer specializing in MERN Stack and Java Full-Stack development."
+    content="Explore Saad Shaikh's developer portfolio featuring MERN Stack applications, Java backend development, projects, technical skills, and professional experience."
   />
 
   <meta
@@ -63,8 +64,17 @@
   />
 
   <meta
+    property="og:image:secure_url"
+    content="https://saadshaikh-portfolio.netlify.app/og-image.png"
+  />
+
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta
     property="og:image:alt"
-    content="Saad Shaikh — Full-Stack Developer Portfolio"
+    content="Saad Shaikh — Full-Stack Developer (MERN Stack and Java)"
   />
 
   <meta property="og:locale" content="en_IN" />
@@ -74,12 +84,12 @@
 
   <meta
     name="twitter:title"
-    content="Saad Shaikh | Full-Stack Developer — MERN & Java"
+    content="Saad Shaikh | Full-Stack Developer — MERN Stack & Java"
   />
 
   <meta
     name="twitter:description"
-    content="Full-Stack Developer specializing in MERN Stack and Java Full-Stack development."
+    content="Explore Saad Shaikh's developer portfolio featuring MERN Stack applications, Java backend development, projects, technical skills, and professional experience."
   />
 
   <meta
@@ -89,7 +99,7 @@
 
   <meta
     name="twitter:image:alt"
-    content="Saad Shaikh — Full-Stack Developer Portfolio"
+    content="Saad Shaikh — Full-Stack Developer (MERN Stack and Java)"
   />
 
   <!-- Google Search Console Verification -->
@@ -112,37 +122,61 @@
     rel="stylesheet"
   />
 
-  <!-- Person Structured Data -->
+  <!-- Person Structured Data (Schema.org) -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Saad Shaikh",
-      "url": "https://saadshaikh-portfolio.netlify.app/",
-      "jobTitle": "Full-Stack Developer",
-      "description": "Full-Stack Developer specializing in MERN Stack and Java Full-Stack development.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Pune",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "IN"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/saad-shaikh-aminoddin",
-        "https://github.com/saadshaikh12312",
-        "https://leetcode.com/u/XGHqgeoovn/"
-      ],
-      "knowsAbout": [
-        "Full-Stack Development",
-        "MERN Stack",
-        "Java",
-        "Spring Boot",
-        "React",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "REST APIs",
-        "JavaScript"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://saadshaikh-portfolio.netlify.app/#person",
+          "name": "Saad Shaikh",
+          "url": "https://saadshaikh-portfolio.netlify.app/",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://saadshaikh-portfolio.netlify.app/#profile-image",
+            "url": "https://saadshaikh-portfolio.netlify.app/saad-shaikh-profile.webp",
+            "contentUrl": "https://saadshaikh-portfolio.netlify.app/saad-shaikh-profile.webp",
+            "caption": "Saad Shaikh, Full-Stack Developer"
+          },
+          "jobTitle": "Full-Stack Developer",
+          "description": "Full-Stack Developer specializing in MERN Stack (React, Node.js, Express.js, MongoDB) and Java backend development (Java, Spring Boot, MySQL, REST APIs).",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Pune",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IN"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/saad-shaikh-aminoddin",
+            "https://github.com/saadshaikh12312",
+            "https://leetcode.com/u/XGHqgeoovn/"
+          ],
+          "knowsAbout": [
+            "Full-Stack Development",
+            "MERN Stack",
+            "Java",
+            "Spring Boot",
+            "React",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "REST APIs",
+            "JavaScript",
+            "MySQL",
+            "Data Structures & Algorithms"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://saadshaikh-portfolio.netlify.app/#website",
+          "url": "https://saadshaikh-portfolio.netlify.app/",
+          "name": "Saad Shaikh Portfolio",
+          "description": "Personal developer portfolio of Saad Shaikh showcasing MERN and Java full-stack applications.",
+          "author": {
+            "@id": "https://saadshaikh-portfolio.netlify.app/#person"
+          }
+        }
       ]
     }
   </script>

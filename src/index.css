@@ -9,8 +9,8 @@
   }
   
   body {
-    background-color: #080c12;
-    color: #f5f7fa;
+    background-color: #0B1018;
+    color: #F5F7FA;
     overflow-x: hidden;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
@@ -22,7 +22,7 @@
 
   /* Focus visible accessibility styling */
   :focus-visible {
-    outline: 2px solid #f05335;
+    outline: 2px solid #FF986B;
     outline-offset: 2px;
   }
 }
@@ -51,7 +51,7 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080c12;
+  background: #0B1018;
 }
 ::-webkit-scrollbar-thumb {
   background: #1c232f;

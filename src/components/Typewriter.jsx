@@ -53,19 +53,36 @@ export default function Typewriter({ phrases, typingSpeed = 75, deletingSpeed = 
     return () => clearTimeout(timeout);
   }, [text, isDeleting, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseTime, prefersReducedMotion]);
 
+  const renderStyledText = (rawText) => {
+    // If the text contains "Developer", highlight the preceding part with soft orange #FFB58F and Developer with white
+    const devIndex = rawText.indexOf('Developer');
+    if (devIndex !== -1) {
+      const prefix = rawText.substring(0, devIndex);
+      const rest = rawText.substring(devIndex);
+      return (
+        <>
+          <span className="text-[#FFB58F] font-bold">{prefix}</span>
+          <span className="text-[#F5F7FA] font-bold">{rest}</span>
+        </>
+      );
+    }
+    return <span className="text-[#FFB58F] font-bold">{rawText}</span>;
+  };
+
   if (prefersReducedMotion) {
+    const staticText = phrases[0] || 'Backend & API Developer';
     return (
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-terracotta-400 via-terracotta-500 to-amber-400 font-bold">
-        {phrases[0] || 'Full-Stack Developer'}
+      <span className="font-bold select-none">
+        {renderStyledText(staticText)}
       </span>
     );
   }
 
   return (
-    <span className="inline-flex items-center text-transparent bg-clip-text bg-gradient-to-r from-terracotta-400 via-terracotta-500 to-amber-400 font-bold whitespace-nowrap select-none">
-      <span>{text}</span>
+    <span className="inline-flex items-center font-bold whitespace-nowrap select-none">
+      <span>{renderStyledText(text)}</span>
       <span
-        className={`ml-1 inline-block w-[3px] h-[0.85em] bg-terracotta-500 align-middle transition-opacity duration-150 ${
+        className={`ml-1 inline-block w-[3px] h-[0.85em] bg-[#FF986B] align-middle transition-opacity duration-150 ${
           cursorVisible ? 'opacity-100' : 'opacity-0'
         }`}
         aria-hidden="true"

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Googlebot-Image specific
+User-agent: Googlebot-Image
+Allow: /
+Allow: /saad-shaikh-profile.webp
+Allow: /saad-shaikh-profile.jpg
+Allow: /og-image.png
+
+Sitemap: https://saadshaikh-portfolio.netlify.app/sitemap.xml
